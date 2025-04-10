@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:practice_project/features/login/domain/bloc/login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,7 +30,13 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocConsumer<LoginBloc, LoginState>(
+      listener: (context, state) => state.maybeWhen(
+        authed: () => context.replaceNamed('/profile'),
+        orElse: () {
+          return null;
+        },
+      ),
       builder: (context, state) {
         return Scaffold(
           body: SafeArea(

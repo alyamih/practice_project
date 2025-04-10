@@ -30,17 +30,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
-      //final credential =
-      FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: event.email,
         password: event.password,
-      )
-          .then((value) => log('complete'), onError: (error) {
-        log(error.toString(), error: error);
-      });
+      );
     } on FirebaseAuthException catch (e, st) {
-      log('error', error: e, stackTrace: st);
+      emit(LoginState.error(message: e.code, error: e, stackTrace: st));
       if (e.code == 'weak-password') {
         emit(LoginState.error(
             message: e.code, error: e, stackTrace: e.stackTrace));
