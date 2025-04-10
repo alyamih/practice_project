@@ -4,4 +4,6 @@ part of 'login_bloc.dart';
 class LoginEvent with _$LoginEvent {
   const factory LoginEvent.signIn(String email, String password) = _SignIn;
   const factory LoginEvent.signOut() = _SignOut;
+  const factory LoginEvent.handleFirebaseAuthStateChanges(User? user) =
+      _HandleFirebaseAuthStateChanges;
 }

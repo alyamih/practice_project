@@ -20,18 +20,21 @@ mixin _$LoginEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) signIn,
     required TResult Function() signOut,
+    required TResult Function(User? user) handleFirebaseAuthStateChanges,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? signIn,
     TResult? Function()? signOut,
+    TResult? Function(User? user)? handleFirebaseAuthStateChanges,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? signIn,
     TResult Function()? signOut,
+    TResult Function(User? user)? handleFirebaseAuthStateChanges,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,24 @@ mixin _$LoginEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_SignOut value) signOut,
+    required TResult Function(_HandleFirebaseAuthStateChanges value)
+        handleFirebaseAuthStateChanges,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_SignOut value)? signOut,
+    TResult? Function(_HandleFirebaseAuthStateChanges value)?
+        handleFirebaseAuthStateChanges,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SignIn value)? signIn,
     TResult Function(_SignOut value)? signOut,
+    TResult Function(_HandleFirebaseAuthStateChanges value)?
+        handleFirebaseAuthStateChanges,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,6 +165,7 @@ class _$SignInImpl implements _SignIn {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) signIn,
     required TResult Function() signOut,
+    required TResult Function(User? user) handleFirebaseAuthStateChanges,
   }) {
     return signIn(email, password);
   }
@@ -165,6 +175,7 @@ class _$SignInImpl implements _SignIn {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? signIn,
     TResult? Function()? signOut,
+    TResult? Function(User? user)? handleFirebaseAuthStateChanges,
   }) {
     return signIn?.call(email, password);
   }
@@ -174,6 +185,7 @@ class _$SignInImpl implements _SignIn {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? signIn,
     TResult Function()? signOut,
+    TResult Function(User? user)? handleFirebaseAuthStateChanges,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -187,6 +199,8 @@ class _$SignInImpl implements _SignIn {
   TResult map<TResult extends Object?>({
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_SignOut value) signOut,
+    required TResult Function(_HandleFirebaseAuthStateChanges value)
+        handleFirebaseAuthStateChanges,
   }) {
     return signIn(this);
   }
@@ -196,6 +210,8 @@ class _$SignInImpl implements _SignIn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_SignOut value)? signOut,
+    TResult? Function(_HandleFirebaseAuthStateChanges value)?
+        handleFirebaseAuthStateChanges,
   }) {
     return signIn?.call(this);
   }
@@ -205,6 +221,8 @@ class _$SignInImpl implements _SignIn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SignIn value)? signIn,
     TResult Function(_SignOut value)? signOut,
+    TResult Function(_HandleFirebaseAuthStateChanges value)?
+        handleFirebaseAuthStateChanges,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -271,6 +289,7 @@ class _$SignOutImpl implements _SignOut {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) signIn,
     required TResult Function() signOut,
+    required TResult Function(User? user) handleFirebaseAuthStateChanges,
   }) {
     return signOut();
   }
@@ -280,6 +299,7 @@ class _$SignOutImpl implements _SignOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? signIn,
     TResult? Function()? signOut,
+    TResult? Function(User? user)? handleFirebaseAuthStateChanges,
   }) {
     return signOut?.call();
   }
@@ -289,6 +309,7 @@ class _$SignOutImpl implements _SignOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? signIn,
     TResult Function()? signOut,
+    TResult Function(User? user)? handleFirebaseAuthStateChanges,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -302,6 +323,8 @@ class _$SignOutImpl implements _SignOut {
   TResult map<TResult extends Object?>({
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_SignOut value) signOut,
+    required TResult Function(_HandleFirebaseAuthStateChanges value)
+        handleFirebaseAuthStateChanges,
   }) {
     return signOut(this);
   }
@@ -311,6 +334,8 @@ class _$SignOutImpl implements _SignOut {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_SignOut value)? signOut,
+    TResult? Function(_HandleFirebaseAuthStateChanges value)?
+        handleFirebaseAuthStateChanges,
   }) {
     return signOut?.call(this);
   }
@@ -320,6 +345,8 @@ class _$SignOutImpl implements _SignOut {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SignIn value)? signIn,
     TResult Function(_SignOut value)? signOut,
+    TResult Function(_HandleFirebaseAuthStateChanges value)?
+        handleFirebaseAuthStateChanges,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -331,6 +358,162 @@ class _$SignOutImpl implements _SignOut {
 
 abstract class _SignOut implements LoginEvent {
   const factory _SignOut() = _$SignOutImpl;
+}
+
+/// @nodoc
+abstract class _$$HandleFirebaseAuthStateChangesImplCopyWith<$Res> {
+  factory _$$HandleFirebaseAuthStateChangesImplCopyWith(
+          _$HandleFirebaseAuthStateChangesImpl value,
+          $Res Function(_$HandleFirebaseAuthStateChangesImpl) then) =
+      __$$HandleFirebaseAuthStateChangesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({User? user});
+}
+
+/// @nodoc
+class __$$HandleFirebaseAuthStateChangesImplCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$HandleFirebaseAuthStateChangesImpl>
+    implements _$$HandleFirebaseAuthStateChangesImplCopyWith<$Res> {
+  __$$HandleFirebaseAuthStateChangesImplCopyWithImpl(
+      _$HandleFirebaseAuthStateChangesImpl _value,
+      $Res Function(_$HandleFirebaseAuthStateChangesImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$HandleFirebaseAuthStateChangesImpl(
+      freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HandleFirebaseAuthStateChangesImpl
+    implements _HandleFirebaseAuthStateChanges {
+  const _$HandleFirebaseAuthStateChangesImpl(this.user);
+
+  @override
+  final User? user;
+
+  @override
+  String toString() {
+    return 'LoginEvent.handleFirebaseAuthStateChanges(user: $user)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HandleFirebaseAuthStateChangesImpl &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HandleFirebaseAuthStateChangesImplCopyWith<
+          _$HandleFirebaseAuthStateChangesImpl>
+      get copyWith => __$$HandleFirebaseAuthStateChangesImplCopyWithImpl<
+          _$HandleFirebaseAuthStateChangesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) signIn,
+    required TResult Function() signOut,
+    required TResult Function(User? user) handleFirebaseAuthStateChanges,
+  }) {
+    return handleFirebaseAuthStateChanges(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? signIn,
+    TResult? Function()? signOut,
+    TResult? Function(User? user)? handleFirebaseAuthStateChanges,
+  }) {
+    return handleFirebaseAuthStateChanges?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? signIn,
+    TResult Function()? signOut,
+    TResult Function(User? user)? handleFirebaseAuthStateChanges,
+    required TResult orElse(),
+  }) {
+    if (handleFirebaseAuthStateChanges != null) {
+      return handleFirebaseAuthStateChanges(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SignIn value) signIn,
+    required TResult Function(_SignOut value) signOut,
+    required TResult Function(_HandleFirebaseAuthStateChanges value)
+        handleFirebaseAuthStateChanges,
+  }) {
+    return handleFirebaseAuthStateChanges(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SignIn value)? signIn,
+    TResult? Function(_SignOut value)? signOut,
+    TResult? Function(_HandleFirebaseAuthStateChanges value)?
+        handleFirebaseAuthStateChanges,
+  }) {
+    return handleFirebaseAuthStateChanges?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SignIn value)? signIn,
+    TResult Function(_SignOut value)? signOut,
+    TResult Function(_HandleFirebaseAuthStateChanges value)?
+        handleFirebaseAuthStateChanges,
+    required TResult orElse(),
+  }) {
+    if (handleFirebaseAuthStateChanges != null) {
+      return handleFirebaseAuthStateChanges(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HandleFirebaseAuthStateChanges implements LoginEvent {
+  const factory _HandleFirebaseAuthStateChanges(final User? user) =
+      _$HandleFirebaseAuthStateChangesImpl;
+
+  User? get user;
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HandleFirebaseAuthStateChangesImplCopyWith<
+          _$HandleFirebaseAuthStateChangesImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

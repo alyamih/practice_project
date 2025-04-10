@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practice_project/app/navigation/routes.dart';
 import 'package:practice_project/features/favorites/data/repositories/favorite_repository.dart';
 import 'package:practice_project/features/favorites/domain/bloc/favorites_bloc.dart';
+import 'package:practice_project/features/login/domain/bloc/login_bloc.dart';
 import 'package:practice_project/firebase_options.dart';
 
 bool shouldUseFirebaseEmulator = true;
@@ -17,11 +18,7 @@ Future<void> main() async {
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  auth = FirebaseAuth.instanceFor(app: app);
-
-  if (shouldUseFirebaseEmulator) {
-    await auth.useAuthEmulator('localhost', 9099);
-  }
+  // auth = FirebaseAuth.instanceFor(app: app);
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -35,9 +32,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FavoritesBloc(FavoriteRepository())
-        ..add(const FavoritesEvent.getData()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FavoritesBloc(FavoriteRepository())
+            ..add(const FavoritesEvent.getData()),
+        ),
+        BlocProvider(
+          create: (context) => LoginBloc(),
+        ),
+      ],
       child: MaterialApp.router(
         routerConfig: router,
         title: '',

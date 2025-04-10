@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_event.dart';
@@ -13,7 +13,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(const _Initial()) {
     on<_SignIn>(_onSignIn);
     on<_SignOut>(_onSignOut);
+    on<_HandleFirebaseAuthStateChanges>(_handleFirebaseAuthStateChanges);
+    firebaseAuth = FirebaseAuth.instance.authStateChanges().listen(
+          (event) => add(LoginEvent.handleFirebaseAuthStateChanges(event)),
+        );
   }
+  late StreamSubscription firebaseAuth;
 
   FutureOr<void> _onSignOut(_SignOut event, Emitter<LoginState> emit) async {
     await FirebaseAuth.instance.signOut();
@@ -25,19 +30,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      //final credential =
+      FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
         email: event.email,
         password: event.password,
-      );
-    } on FirebaseAuthException catch (e) {
+      )
+          .then((value) => log('complete'), onError: (error) {
+        log(error.toString(), error: error);
+      });
+    } on FirebaseAuthException catch (e, st) {
+      log('error', error: e, stackTrace: st);
       if (e.code == 'weak-password') {
         emit(LoginState.error(
             message: e.code, error: e, stackTrace: e.stackTrace));
       } else if (e.code == 'email-already-in-use') {
         try {
-          final credential =
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: event.email,
             password: event.password,
           );
@@ -54,5 +63,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } catch (e, st) {
       log(e.toString(), name: 'b:login', stackTrace: st, error: e);
     }
+  }
+
+  @override
+  Future<void> close() {
+    firebaseAuth.cancel();
+    return super.close();
+  }
+
+  FutureOr<void> _handleFirebaseAuthStateChanges(
+      _HandleFirebaseAuthStateChanges event, Emitter<LoginState> emit) {
+    event.user != null
+        ? emit(const LoginState.authed())
+        : emit(const LoginState.initial());
   }
 }
