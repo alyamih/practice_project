@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practice_project/app/navigation/routes.dart';
+import 'package:practice_project/app/notification/notification_service.dart';
 import 'package:practice_project/features/favorites/data/repositories/favorite_repository.dart';
 import 'package:practice_project/features/favorites/domain/bloc/favorites_bloc.dart';
 import 'package:practice_project/features/login/domain/bloc/login_bloc.dart';
@@ -18,7 +20,7 @@ Future<void> main() async {
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // auth = FirebaseAuth.instanceFor(app: app);
+  await NotificationService.init();
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

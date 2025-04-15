@@ -35,11 +35,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         password: event.password,
       );
     } on FirebaseAuthException catch (e, st) {
-      emit(LoginState.error(message: e.code, error: e, stackTrace: st));
-      if (e.code == 'weak-password') {
-        emit(LoginState.error(
-            message: e.code, error: e, stackTrace: e.stackTrace));
-      } else if (e.code == 'email-already-in-use') {
+      if (e.code == 'email-already-in-use') {
         try {
           await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: event.email,
@@ -54,6 +50,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                 message: e.code, error: e, stackTrace: e.stackTrace));
           }
         }
+      } else {
+        emit(LoginState.error(message: e.code, error: e, stackTrace: st));
       }
     } catch (e, st) {
       log(e.toString(), name: 'b:login', stackTrace: st, error: e);

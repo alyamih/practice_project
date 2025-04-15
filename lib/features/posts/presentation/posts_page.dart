@@ -29,16 +29,7 @@ class _PostsPage extends StatelessWidget {
       bloc: context.read<PostsBloc>()..add(const PostsEvent.getData()),
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            actions: [
-              FilledButton(
-                onPressed: () {
-                  context.push('/login');
-                },
-                child: const Icon(CupertinoIcons.person),
-              )
-            ],
-          ),
+          appBar: AppBar(),
           floatingActionButton: FloatingActionButton(
             child: const Icon(
               CupertinoIcons.heart_fill,
