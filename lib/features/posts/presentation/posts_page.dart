@@ -29,7 +29,14 @@ class _PostsPage extends StatelessWidget {
       bloc: context.read<PostsBloc>()..add(const PostsEvent.getData()),
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            actions: [
+              TextButton(
+                onPressed: () => throw Exception(),
+                child: const Text("Throw Test Exception"),
+              ),
+            ],
+          ),
           floatingActionButton: FloatingActionButton(
             child: const Icon(
               CupertinoIcons.heart_fill,

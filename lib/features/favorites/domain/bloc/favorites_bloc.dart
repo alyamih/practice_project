@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:practice_project/features/favorites/data/repositories/favorite_repository.dart';
+import 'package:practice_project/features/favorites/data/repositories/favorite_firebase_repository.dart';
 import 'package:practice_project/features/posts/data/model/post_model.dart';
 
 part 'favorites_event.dart';
@@ -16,7 +16,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     on<_AddData>(_onAddData);
     on<_RemoveData>(_onRemoveData);
   }
-  FavoriteRepository favoriteRepository;
+  FavoriteFirebaseRewpository favoriteRepository;
   bool isFavorite(PostModel post) {
     return state.maybeMap(
       orElse: () => false,

@@ -7,13 +7,15 @@ class NotificationService {
   static Future<void> init() async {
     final notificationSettings =
         await FirebaseMessaging.instance.requestPermission(provisional: true);
-
+    String? apnsToken;
+    String? fcmToken;
 // For apple platforms, ensure the APNS token is available before making any FCM plugin API calls
+    if (Platform.isIOS) {
+      apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+    }
 
-    final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
-  
     if (apnsToken != null) {
-      final fcmToken = await FirebaseMessaging.instance.getToken();
+      fcmToken = await FirebaseMessaging.instance.getToken();
     }
     if (Platform.isIOS) {
       await FirebaseMessaging.instance
