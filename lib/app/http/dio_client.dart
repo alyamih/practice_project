@@ -12,7 +12,7 @@ class DioClient {
       ..options.baseUrl = 'https://jsonplaceholder.typicode.com/'
       ..httpClientAdapter = IOHttpClientAdapter(
         createHttpClient: () => HttpClient()
-          ..findProxy = ((Uri _) => 'PROXY 127.0.0.1:9090')
+         // ..findProxy = ((Uri _) => 'PROXY 127.0.0.1:9090')
           ..badCertificateCallback =
               ((X509Certificate cert, String host, int port) => true),
       );

@@ -9,9 +9,11 @@ class NotificationService {
         await FirebaseMessaging.instance.requestPermission(provisional: true);
 
 // For apple platforms, ensure the APNS token is available before making any FCM plugin API calls
+
     final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+  
     if (apnsToken != null) {
-      // APNS token is available, make FCM plugin API requests...
+      final fcmToken = await FirebaseMessaging.instance.getToken();
     }
     if (Platform.isIOS) {
       await FirebaseMessaging.instance
