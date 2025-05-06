@@ -24,6 +24,9 @@ mixin _$PostModel {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
+  String? get favoriteUserId => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false)
+  String? get docId => throw _privateConstructorUsedError;
 
   /// Serializes this PostModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +43,13 @@ abstract class $PostModelCopyWith<$Res> {
   factory $PostModelCopyWith(PostModel value, $Res Function(PostModel) then) =
       _$PostModelCopyWithImpl<$Res, PostModel>;
   @useResult
-  $Res call({int userId, int id, String title, String body});
+  $Res call(
+      {int userId,
+      int id,
+      String title,
+      String body,
+      String? favoriteUserId,
+      @JsonKey(includeToJson: false) String? docId});
 }
 
 /// @nodoc
@@ -62,6 +71,8 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? id = null,
     Object? title = null,
     Object? body = null,
+    Object? favoriteUserId = freezed,
+    Object? docId = freezed,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -80,6 +91,14 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
+      favoriteUserId: freezed == favoriteUserId
+          ? _value.favoriteUserId
+          : favoriteUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      docId: freezed == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -92,7 +111,13 @@ abstract class _$$PostModelImplCopyWith<$Res>
       __$$PostModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int userId, int id, String title, String body});
+  $Res call(
+      {int userId,
+      int id,
+      String title,
+      String body,
+      String? favoriteUserId,
+      @JsonKey(includeToJson: false) String? docId});
 }
 
 /// @nodoc
@@ -112,6 +137,8 @@ class __$$PostModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? body = null,
+    Object? favoriteUserId = freezed,
+    Object? docId = freezed,
   }) {
     return _then(_$PostModelImpl(
       userId: null == userId
@@ -130,6 +157,14 @@ class __$$PostModelImplCopyWithImpl<$Res>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
+      favoriteUserId: freezed == favoriteUserId
+          ? _value.favoriteUserId
+          : favoriteUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      docId: freezed == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -141,7 +176,9 @@ class _$PostModelImpl implements _PostModel {
       {required this.userId,
       required this.id,
       required this.title,
-      required this.body});
+      required this.body,
+      this.favoriteUserId,
+      @JsonKey(includeToJson: false) this.docId});
 
   factory _$PostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostModelImplFromJson(json);
@@ -154,10 +191,15 @@ class _$PostModelImpl implements _PostModel {
   final String title;
   @override
   final String body;
+  @override
+  final String? favoriteUserId;
+  @override
+  @JsonKey(includeToJson: false)
+  final String? docId;
 
   @override
   String toString() {
-    return 'PostModel(userId: $userId, id: $id, title: $title, body: $body)';
+    return 'PostModel(userId: $userId, id: $id, title: $title, body: $body, favoriteUserId: $favoriteUserId, docId: $docId)';
   }
 
   @override
@@ -168,12 +210,16 @@ class _$PostModelImpl implements _PostModel {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.body, body) || other.body == body));
+            (identical(other.body, body) || other.body == body) &&
+            (identical(other.favoriteUserId, favoriteUserId) ||
+                other.favoriteUserId == favoriteUserId) &&
+            (identical(other.docId, docId) || other.docId == docId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, id, title, body);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, id, title, body, favoriteUserId, docId);
 
   /// Create a copy of PostModel
   /// with the given fields replaced by the non-null parameter values.
@@ -196,7 +242,9 @@ abstract class _PostModel implements PostModel {
       {required final int userId,
       required final int id,
       required final String title,
-      required final String body}) = _$PostModelImpl;
+      required final String body,
+      final String? favoriteUserId,
+      @JsonKey(includeToJson: false) final String? docId}) = _$PostModelImpl;
 
   factory _PostModel.fromJson(Map<String, dynamic> json) =
       _$PostModelImpl.fromJson;
@@ -209,6 +257,11 @@ abstract class _PostModel implements PostModel {
   String get title;
   @override
   String get body;
+  @override
+  String? get favoriteUserId;
+  @override
+  @JsonKey(includeToJson: false)
+  String? get docId;
 
   /// Create a copy of PostModel
   /// with the given fields replaced by the non-null parameter values.

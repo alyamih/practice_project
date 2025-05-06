@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => FavoritesBloc(FavoriteFirebaseRewpository())
+          create: (context) => FavoritesBloc(FavoriteFirebaseRepository())
             ..add(const FavoritesEvent.getData()),
         ),
         BlocProvider(

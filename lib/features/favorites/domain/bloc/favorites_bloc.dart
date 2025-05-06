@@ -16,7 +16,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     on<_AddData>(_onAddData);
     on<_RemoveData>(_onRemoveData);
   }
-  FavoriteFirebaseRewpository favoriteRepository;
+  FavoriteFirebaseRepository favoriteRepository;
   bool isFavorite(PostModel post) {
     return state.maybeMap(
       orElse: () => false,
@@ -46,12 +46,12 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   FutureOr<void> _onAddData(
       _AddData event, Emitter<FavoritesState> emit) async {
     try {
-      await favoriteRepository.putData(event.post);
+      var newPost = await favoriteRepository.putData(event.post);
 
       emit(_Loaded(
           posts: state.maybeWhen(
-        orElse: () => [event.post],
-        loaded: (posts) => [event.post, ...posts],
+        orElse: () => [newPost],
+        loaded: (posts) => [newPost, ...posts],
       )));
     } catch (e, stackTrace) {
       log('', error: e, stackTrace: stackTrace);
@@ -71,7 +71,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
             (element) => element.id != event.post.id,
           )
           .toList();
-      await favoriteRepository.postData(newFavPosts);
+      await favoriteRepository.deleteData(event.post);
       emit(_Loaded(posts: newFavPosts));
     } catch (e, stackTrace) {
       log('', error: e, stackTrace: stackTrace);

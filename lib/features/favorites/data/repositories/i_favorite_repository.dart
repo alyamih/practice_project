@@ -5,4 +5,5 @@ abstract interface class IFavoriteRepository {
   Future<void> postData(List<PostModel> posts);
   Future<List<PostModel>> getData();
   Future<void> putData(PostModel post);
+  Future<void> deleteData(PostModel post);
 }

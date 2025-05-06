@@ -12,6 +12,8 @@ _$PostModelImpl _$$PostModelImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       body: json['body'] as String,
+      favoriteUserId: json['favoriteUserId'] as String?,
+      docId: json['docId'] as String?,
     );
 
 Map<String, dynamic> _$$PostModelImplToJson(_$PostModelImpl instance) =>
@@ -20,4 +22,5 @@ Map<String, dynamic> _$$PostModelImplToJson(_$PostModelImpl instance) =>
       'id': instance.id,
       'title': instance.title,
       'body': instance.body,
+      'favoriteUserId': instance.favoriteUserId,
     };

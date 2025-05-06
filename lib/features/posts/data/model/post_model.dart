@@ -10,6 +10,8 @@ class PostModel with _$PostModel {
     required int id,
     required String title,
     required String body,
+    String? favoriteUserId,
+    @JsonKey(includeToJson: false) String? docId,
   }) = _PostModel;
 
   factory PostModel.fromJson(Map<String, dynamic> json) =>

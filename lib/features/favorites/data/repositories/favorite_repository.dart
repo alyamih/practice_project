@@ -22,4 +22,13 @@ class FavoriteRepository implements IFavoriteRepository {
   Future<void> putData(PostModel post) async {
     (await dataSource).addPostData(SharedPrefKeys.favoritePosts, post);
   }
+
+  @override
+  Future<void> deleteData(PostModel post) async {
+    var posts = (await dataSource).getPostsData(SharedPrefKeys.favoritePosts);
+    var newPosts = posts.where(
+      (element) => element.id != post.id,
+    );
+    postData(newPosts.toList());
+  }
 }
