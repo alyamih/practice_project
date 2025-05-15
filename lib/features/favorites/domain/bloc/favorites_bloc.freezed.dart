@@ -518,6 +518,7 @@ mixin _$FavoritesState {
     required TResult Function(List<PostModel> posts) loaded,
     required TResult Function(Object error, StackTrace? stackTrace) error,
     required TResult Function() empty,
+    required TResult Function() notAuthed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -526,6 +527,7 @@ mixin _$FavoritesState {
     TResult? Function(List<PostModel> posts)? loaded,
     TResult? Function(Object error, StackTrace? stackTrace)? error,
     TResult? Function()? empty,
+    TResult? Function()? notAuthed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -534,6 +536,7 @@ mixin _$FavoritesState {
     TResult Function(List<PostModel> posts)? loaded,
     TResult Function(Object error, StackTrace? stackTrace)? error,
     TResult Function()? empty,
+    TResult Function()? notAuthed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -543,6 +546,7 @@ mixin _$FavoritesState {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_NotAuthed value) notAuthed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -551,6 +555,7 @@ mixin _$FavoritesState {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_NotAuthed value)? notAuthed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -559,6 +564,7 @@ mixin _$FavoritesState {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_NotAuthed value)? notAuthed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -630,6 +636,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(List<PostModel> posts) loaded,
     required TResult Function(Object error, StackTrace? stackTrace) error,
     required TResult Function() empty,
+    required TResult Function() notAuthed,
   }) {
     return loading();
   }
@@ -641,6 +648,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(List<PostModel> posts)? loaded,
     TResult? Function(Object error, StackTrace? stackTrace)? error,
     TResult? Function()? empty,
+    TResult? Function()? notAuthed,
   }) {
     return loading?.call();
   }
@@ -652,6 +660,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(List<PostModel> posts)? loaded,
     TResult Function(Object error, StackTrace? stackTrace)? error,
     TResult Function()? empty,
+    TResult Function()? notAuthed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -667,6 +676,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_NotAuthed value) notAuthed,
   }) {
     return loading(this);
   }
@@ -678,6 +688,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_NotAuthed value)? notAuthed,
   }) {
     return loading?.call(this);
   }
@@ -689,6 +700,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_NotAuthed value)? notAuthed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -780,6 +792,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(List<PostModel> posts) loaded,
     required TResult Function(Object error, StackTrace? stackTrace) error,
     required TResult Function() empty,
+    required TResult Function() notAuthed,
   }) {
     return loaded(posts);
   }
@@ -791,6 +804,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(List<PostModel> posts)? loaded,
     TResult? Function(Object error, StackTrace? stackTrace)? error,
     TResult? Function()? empty,
+    TResult? Function()? notAuthed,
   }) {
     return loaded?.call(posts);
   }
@@ -802,6 +816,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(List<PostModel> posts)? loaded,
     TResult Function(Object error, StackTrace? stackTrace)? error,
     TResult Function()? empty,
+    TResult Function()? notAuthed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -817,6 +832,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_NotAuthed value) notAuthed,
   }) {
     return loaded(this);
   }
@@ -828,6 +844,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_NotAuthed value)? notAuthed,
   }) {
     return loaded?.call(this);
   }
@@ -839,6 +856,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_NotAuthed value)? notAuthed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -939,6 +957,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(List<PostModel> posts) loaded,
     required TResult Function(Object error, StackTrace? stackTrace) error,
     required TResult Function() empty,
+    required TResult Function() notAuthed,
   }) {
     return error(this.error, stackTrace);
   }
@@ -950,6 +969,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(List<PostModel> posts)? loaded,
     TResult? Function(Object error, StackTrace? stackTrace)? error,
     TResult? Function()? empty,
+    TResult? Function()? notAuthed,
   }) {
     return error?.call(this.error, stackTrace);
   }
@@ -961,6 +981,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(List<PostModel> posts)? loaded,
     TResult Function(Object error, StackTrace? stackTrace)? error,
     TResult Function()? empty,
+    TResult Function()? notAuthed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -976,6 +997,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_NotAuthed value) notAuthed,
   }) {
     return error(this);
   }
@@ -987,6 +1009,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_NotAuthed value)? notAuthed,
   }) {
     return error?.call(this);
   }
@@ -998,6 +1021,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_NotAuthed value)? notAuthed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1067,6 +1091,7 @@ class _$EmptyImpl implements _Empty {
     required TResult Function(List<PostModel> posts) loaded,
     required TResult Function(Object error, StackTrace? stackTrace) error,
     required TResult Function() empty,
+    required TResult Function() notAuthed,
   }) {
     return empty();
   }
@@ -1078,6 +1103,7 @@ class _$EmptyImpl implements _Empty {
     TResult? Function(List<PostModel> posts)? loaded,
     TResult? Function(Object error, StackTrace? stackTrace)? error,
     TResult? Function()? empty,
+    TResult? Function()? notAuthed,
   }) {
     return empty?.call();
   }
@@ -1089,6 +1115,7 @@ class _$EmptyImpl implements _Empty {
     TResult Function(List<PostModel> posts)? loaded,
     TResult Function(Object error, StackTrace? stackTrace)? error,
     TResult Function()? empty,
+    TResult Function()? notAuthed,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -1104,6 +1131,7 @@ class _$EmptyImpl implements _Empty {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_Empty value) empty,
+    required TResult Function(_NotAuthed value) notAuthed,
   }) {
     return empty(this);
   }
@@ -1115,6 +1143,7 @@ class _$EmptyImpl implements _Empty {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_Empty value)? empty,
+    TResult? Function(_NotAuthed value)? notAuthed,
   }) {
     return empty?.call(this);
   }
@@ -1126,6 +1155,7 @@ class _$EmptyImpl implements _Empty {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_Empty value)? empty,
+    TResult Function(_NotAuthed value)? notAuthed,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -1137,4 +1167,127 @@ class _$EmptyImpl implements _Empty {
 
 abstract class _Empty implements FavoritesState {
   const factory _Empty() = _$EmptyImpl;
+}
+
+/// @nodoc
+abstract class _$$NotAuthedImplCopyWith<$Res> {
+  factory _$$NotAuthedImplCopyWith(
+          _$NotAuthedImpl value, $Res Function(_$NotAuthedImpl) then) =
+      __$$NotAuthedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NotAuthedImplCopyWithImpl<$Res>
+    extends _$FavoritesStateCopyWithImpl<$Res, _$NotAuthedImpl>
+    implements _$$NotAuthedImplCopyWith<$Res> {
+  __$$NotAuthedImplCopyWithImpl(
+      _$NotAuthedImpl _value, $Res Function(_$NotAuthedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FavoritesState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$NotAuthedImpl implements _NotAuthed {
+  const _$NotAuthedImpl();
+
+  @override
+  String toString() {
+    return 'FavoritesState.notAuthed()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$NotAuthedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<PostModel> posts) loaded,
+    required TResult Function(Object error, StackTrace? stackTrace) error,
+    required TResult Function() empty,
+    required TResult Function() notAuthed,
+  }) {
+    return notAuthed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<PostModel> posts)? loaded,
+    TResult? Function(Object error, StackTrace? stackTrace)? error,
+    TResult? Function()? empty,
+    TResult? Function()? notAuthed,
+  }) {
+    return notAuthed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<PostModel> posts)? loaded,
+    TResult Function(Object error, StackTrace? stackTrace)? error,
+    TResult Function()? empty,
+    TResult Function()? notAuthed,
+    required TResult orElse(),
+  }) {
+    if (notAuthed != null) {
+      return notAuthed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_NotAuthed value) notAuthed,
+  }) {
+    return notAuthed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_NotAuthed value)? notAuthed,
+  }) {
+    return notAuthed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Error value)? error,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_NotAuthed value)? notAuthed,
+    required TResult orElse(),
+  }) {
+    if (notAuthed != null) {
+      return notAuthed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotAuthed implements FavoritesState {
+  const factory _NotAuthed() = _$NotAuthedImpl;
 }

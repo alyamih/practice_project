@@ -38,12 +38,14 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CupertinoTextField(
+                    decoration: BoxDecoration(color: Colors.grey.shade300),
                     controller: _email,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
                   CupertinoTextField(
+                    decoration: BoxDecoration(color: Colors.grey.shade300),
                     controller: _password,
                   ),
                   const SizedBox(

@@ -46,6 +46,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
             loading: () {
               return const Center(child: CircularProgressIndicator());
             },
+            notAuthed: () {
+              return const Center(
+                  child: Text('You need to log in to use favorites'));
+            },
           ),
         );
       },

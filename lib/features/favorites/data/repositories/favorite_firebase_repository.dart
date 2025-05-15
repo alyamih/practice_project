@@ -9,12 +9,16 @@ class FavoriteFirebaseRepository implements IFavoriteRepository {
 
   @override
   Future<List<PostModel>> getData() async {
-    return dataSource.collection('favorites').get().then(
+    return dataSource
+        .collection('favorites')
+        .where('favoriteUserId',
+            isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+        .get()
+        .then(
       (value) {
         return value.docs.map(
           (e) {
-            // log(e.data().toString());
-            return PostModel.fromJson(e.data()).copyWith(docId: e.id);
+            return PostModel.fromJson(e.data());
           },
         ).toList();
       },
@@ -24,24 +28,33 @@ class FavoriteFirebaseRepository implements IFavoriteRepository {
   @override
   Future<void> postData(List<PostModel> posts) async {
     for (var post in posts) {
-      dataSource.collection('favorites').add(post
-          .copyWith(favoriteUserId: FirebaseAuth.instance.currentUser?.uid)
-          .toJson());
+      dataSource
+          .collection('favorites')
+          .doc('${post.id}_${FirebaseAuth.instance.currentUser?.uid}')
+          .set(post
+              .copyWith(favoriteUserId: FirebaseAuth.instance.currentUser?.uid)
+              .toJson());
     }
   }
 
   @override
   Future<PostModel> putData(PostModel post) async {
-    var currentCollection =
-        await dataSource.collection('favorites').add(post.toJson());
-    var newPost = await currentCollection.get();
-    return PostModel.fromJson(newPost.data()!).copyWith(
-        favoriteUserId: FirebaseAuth.instance.currentUser?.uid,
-        docId: newPost.id);
+    await dataSource
+        .collection('favorites')
+        .doc('${post.id}_${FirebaseAuth.instance.currentUser?.uid}')
+        .set(post
+            .copyWith(favoriteUserId: FirebaseAuth.instance.currentUser?.uid)
+            .toJson());
+
+    return post.copyWith(
+        favoriteUserId: FirebaseAuth.instance.currentUser?.uid);
   }
 
   @override
   Future<void> deleteData(PostModel post) async {
-    dataSource.collection('favorites').doc(post.docId).delete();
+    dataSource
+        .collection('favorites')
+        .doc('${post.id}_${FirebaseAuth.instance.currentUser?.uid}')
+        .delete();
   }
 }

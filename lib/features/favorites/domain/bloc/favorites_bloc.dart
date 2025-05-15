@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:practice_project/features/favorites/data/repositories/favorite_firebase_repository.dart';
 import 'package:practice_project/features/posts/data/model/post_model.dart';
@@ -15,8 +16,10 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     on<_GetData>(_onGetData);
     on<_AddData>(_onAddData);
     on<_RemoveData>(_onRemoveData);
+    initListenersToExternalStreams();
   }
   FavoriteFirebaseRepository favoriteRepository;
+  late StreamSubscription userAuthStream;
   bool isFavorite(PostModel post) {
     return state.maybeMap(
       orElse: () => false,
@@ -37,8 +40,10 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         return emit(const _Empty());
       }
       emit(_Loaded(posts: data));
+    } on FirebaseException catch (e, stackTrace) {
+      emit(const _NotAuthed());
     } catch (e, stackTrace) {
-      log('', error: e, stackTrace: stackTrace);
+      log('${e.runtimeType}', error: e, stackTrace: stackTrace);
       emit(_Error(error: e, stackTrace: stackTrace));
     }
   }
@@ -83,5 +88,17 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   void onChange(Change<FavoritesState> change) {
     log('${change.currentState}\n\n${change.nextState}');
     super.onChange(change);
+  }
+
+  @override
+  Future<void> close() {
+    userAuthStream.cancel();
+    return super.close();
+  }
+
+  void initListenersToExternalStreams() {
+    userAuthStream = FirebaseAuth.instance.userChanges().listen(
+          (event) => this.add(const _GetData()),
+        );
   }
 }

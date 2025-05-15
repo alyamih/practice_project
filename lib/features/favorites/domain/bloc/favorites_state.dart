@@ -8,4 +8,5 @@ class FavoritesState with _$FavoritesState {
   const factory FavoritesState.error(
       {required Object error, StackTrace? stackTrace}) = _Error;
   const factory FavoritesState.empty() = _Empty;
+  const factory FavoritesState.notAuthed() = _NotAuthed;
 }
