@@ -10,18 +10,19 @@ part 'login_state.dart';
 part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(const _Initial()) {
+  LoginBloc(this.firebaseAuth) : super(const _Initial()) {
     on<_SignIn>(_onSignIn);
     on<_SignOut>(_onSignOut);
     on<_HandleFirebaseAuthStateChanges>(_handleFirebaseAuthStateChanges);
-    firebaseAuth = FirebaseAuth.instance.authStateChanges().listen(
+    firebaseAuthStateStream = firebaseAuth.authStateChanges().listen(
           (event) => add(LoginEvent.handleFirebaseAuthStateChanges(event)),
         );
   }
-  late StreamSubscription firebaseAuth;
+  late StreamSubscription firebaseAuthStateStream;
+  final FirebaseAuth firebaseAuth;
 
   FutureOr<void> _onSignOut(_SignOut event, Emitter<LoginState> emit) async {
-    await FirebaseAuth.instance.signOut();
+    await firebaseAuth.signOut();
     emit(const _Initial());
   }
 
@@ -30,14 +31,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await firebaseAuth.createUserWithEmailAndPassword(
         email: event.email,
         password: event.password,
       );
     } on FirebaseAuthException catch (e, st) {
       if (e.code == 'email-already-in-use') {
         try {
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await firebaseAuth.signInWithEmailAndPassword(
             email: event.email,
             password: event.password,
           );
@@ -60,7 +61,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   @override
   Future<void> close() {
-    firebaseAuth.cancel();
+    firebaseAuthStateStream.cancel();
     return super.close();
   }
 

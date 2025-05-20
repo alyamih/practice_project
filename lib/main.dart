@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             ..add(const FavoritesEvent.getData()),
         ),
         BlocProvider(
-          create: (context) => LoginBloc(),
+          create: (context) => LoginBloc(FirebaseAuth.instance),
         ),
       ],
       child: MaterialApp.router(
