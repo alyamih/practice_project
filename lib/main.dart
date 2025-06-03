@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:practice_project/app/deeplink/deeplink_service.dart';
 import 'package:practice_project/app/navigation/routes.dart';
 import 'package:practice_project/app/notification/notification_service.dart';
 import 'package:practice_project/features/favorites/data/repositories/favorite_firebase_repository.dart';
@@ -31,6 +32,8 @@ Future<void> main() async {
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
   };
+  DeepLinkService.handleInit();
+  DeepLinkService.handleForeground();
   // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);

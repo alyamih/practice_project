@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_project/app/navigation/bottom_bar_base.dart';
 import 'package:practice_project/features/favorites/presentation/favorites_page.dart';
@@ -5,6 +6,7 @@ import 'package:practice_project/features/login/presentation/login_wrapper_page.
 import 'package:practice_project/features/post_details/presentation/post_details_page.dart';
 import 'package:practice_project/features/posts/presentation/posts_page.dart';
 
+GlobalKey<NavigatorState> shellKey = GlobalKey<NavigatorState>();
 final router = GoRouter(
   routes: [
     GoRoute(
