@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app_links/app_links.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_project/app/navigation/routes.dart';
@@ -15,6 +17,7 @@ class DeepLinkService {
     initialLink.forEach(
       (element) {
         if (element.fragment.isNotEmpty) {
+          log('||||||${element.fragment}');
           // if (element.fragment == '/' || element.fragment == '/profile') {
           // StatefulNavigationShell.of(router.)
           //     .goBranch(1);
